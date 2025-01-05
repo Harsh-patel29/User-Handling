@@ -16,16 +16,21 @@ app.use(express.static("/.public"));
 import healthcheckRouter from "./routes/healthcheck.routes.js";
 import registerUserRouter from "./routes/user.routes.js";
 import loginUserRouter from "./routes/user.routes.js";
-<<<<<<< HEAD
-app.use("/api/v1/healthcheck", healthcheckRouter);
-app.use("/api/v1/users", registerUserRouter);
-app.use("/api/v1/users", loginUserRouter);
-=======
 import logOutUserRouter from "./routes/user.routes.js";
+import changeUserPasswordRouter from "./routes/user.routes.js";
+import getUserDetailsRouter from "./routes/user.routes.js";
+import updateAccountDetailsRouter from "./routes/user.routes.js";
+import updateAvatarImageRouter from "./routes/user.routes.js";
+import updateCoverImageRouter from "./routes/user.routes.js";
+
 app.use("/api/v1/healthcheck", healthcheckRouter);
 app.use("/api/v1/users", registerUserRouter);
 app.use("/api/v1/users", loginUserRouter);
 app.use("/api/v1/users", logOutUserRouter);
->>>>>>> 167f0ff (Create Login and LogOut)
+app.use("/api/v1/users", changeUserPasswordRouter);
+app.use("/api/v1/users", getUserDetailsRouter);
+app.use("api/v1/users", updateAccountDetailsRouter);
+app.use("api/v1/users", updateAvatarImageRouter);
+app.use("api/v1/users", updateCoverImageRouter);
 
 export { app };

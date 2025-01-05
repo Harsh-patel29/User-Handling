@@ -1,12 +1,16 @@
 import { Router } from "express";
-import { registerUser } from "../controllers/user.controller.js";
 import { Upload } from "../middlewares/multer.middleware.js";
-import { loginUser } from "../controllers/user.controller.js";
-<<<<<<< HEAD
-=======
-import { logOutUser } from "../controllers/user.controller.js";
+import {
+  registerUser,
+  loginUser,
+  changeCurrentPassword,
+  logOutUser,
+  getUserDetails,
+  updateAccountDetails,
+  updateAvatarImage,
+  updateCoverImage,
+} from "../controllers/user.controller.js";
 import { verifyJwt } from "../middlewares/auth.middleware.js";
->>>>>>> 167f0ff (Create Login and LogOut)
 import multer from "multer";
 
 const router = Router();
@@ -27,8 +31,37 @@ router.route("/register").post(
 );
 
 router.route("/login").post(UploadText.none(), loginUser);
-<<<<<<< HEAD
-=======
+
 router.route("/logout").post(verifyJwt, logOutUser);
->>>>>>> 167f0ff (Create Login and LogOut)
+router
+  .route("/changepassword")
+  .post(UploadText.none(), verifyJwt, changeCurrentPassword);
+
+router.route("/getdetails").get(verifyJwt, getUserDetails);
+router
+  .route("/accountdetails")
+  .post(UploadText.none(), verifyJwt, updateAccountDetails);
+
+router.route("/updateavatar").post(
+  Upload.fields([
+    {
+      name: "avatar",
+      maxCount: 1,
+    },
+  ]),
+  verifyJwt,
+  updateAvatarImage
+);
+
+router.route("/updatecoverimage").post(
+  Upload.fields([
+    {
+      name: "coverImage",
+      maxCount: 1,
+    },
+  ]),
+  verifyJwt,
+  updateCoverImage
+);
+
 export default router;
