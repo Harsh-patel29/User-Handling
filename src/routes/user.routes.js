@@ -42,26 +42,12 @@ router
   .route("/accountdetails")
   .patch(UploadText.none(), verifyJwt, updateAccountDetails);
 
-router.route("/updateavatar").patch(
-  Upload.fields([
-    {
-      name: "avatar",
-      maxCount: 1,
-    },
-  ]),
-  verifyJwt,
-  updateAvatarImage
-);
+router
+  .route("/updateavatar")
+  .patch(Upload.single("avatar"), verifyJwt, updateAvatarImage);
 
-router.route("/updatecoverimage").patch(
-  Upload.fields([
-    {
-      name: "coverImage",
-      maxCount: 1,
-    },
-  ]),
-  verifyJwt,
-  updateCoverImage
-);
+router
+  .route("/updatecoverimage")
+  .patch(Upload.single("coverImage"), verifyJwt, updateCoverImage);
 
 export default router;

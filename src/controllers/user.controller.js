@@ -202,7 +202,9 @@ const updateAccountDetails = AsyncHandler(async (req, res) => {
 });
 
 const updateAvatarImage = AsyncHandler(async (req, res) => {
-  const avatarLocalFilePath = req.files?.avatar?.[0]?.path;
+  const avatarLocalFilePath = req.file?.path;
+  console.log(avatarLocalFilePath);
+
   if (!avatarLocalFilePath) {
     throw new ApiError(400, "Avatar file is required");
   }
@@ -227,7 +229,7 @@ const updateAvatarImage = AsyncHandler(async (req, res) => {
 });
 
 const updateCoverImage = AsyncHandler(async (req, res) => {
-  const coverImageLocalFilePath = req.files?.coverImage?.[0]?.path;
+  const coverImageLocalFilePath = req.file?.path;
   if (!coverImageLocalFilePath) {
     throw new ApiError(400, "coverImage is required");
   }
