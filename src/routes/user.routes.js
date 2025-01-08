@@ -35,14 +35,14 @@ router.route("/login").post(UploadText.none(), loginUser);
 router.route("/logout").post(verifyJwt, logOutUser);
 router
   .route("/changepassword")
-  .post(UploadText.none(), verifyJwt, changeCurrentPassword);
+  .patch(UploadText.none(), verifyJwt, changeCurrentPassword);
 
 router.route("/getdetails").get(verifyJwt, getUserDetails);
 router
   .route("/accountdetails")
-  .post(UploadText.none(), verifyJwt, updateAccountDetails);
+  .patch(UploadText.none(), verifyJwt, updateAccountDetails);
 
-router.route("/updateavatar").post(
+router.route("/updateavatar").patch(
   Upload.fields([
     {
       name: "avatar",
@@ -53,7 +53,7 @@ router.route("/updateavatar").post(
   updateAvatarImage
 );
 
-router.route("/updatecoverimage").post(
+router.route("/updatecoverimage").patch(
   Upload.fields([
     {
       name: "coverImage",
